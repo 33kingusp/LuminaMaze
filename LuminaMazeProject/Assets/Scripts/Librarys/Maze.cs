@@ -21,23 +21,23 @@ public class Maze
 
     public void MakeMaze(int seed)
     {
-        int x = size.x* 2 + 1;
-        int y = size.y * 2 + 1;
-        List<int> w = new List<int>(new int[x * y]);
+        Vector2Int s = new Vector2Int(size.x * 2 + 1, size.y * 2 + 1);
+        List<Vector2Int> start = new List<Vector2Int>();
+        List<int> w = new List<int>(new int[s.x * s.y]);
         Random.InitState(seed);
 
-        for (int m = 0; m < y; m++)
-            for (int n = 0; n < y; n++)
-                if (n == 0 || n == x - 1 || m == 0 || m == y - 1)
-                    w[m * x + n] = 1;
+        for (int y = 0; y < s.y; y++)
+            for (int x = 0; x < s.x; x++)
+            {
+                if (x == 0 || x == s.x - 1 || y == 0 || y == s.y - 1)
+                    w[y * s.x + x] = 1;
+                else if (x % 2 == 0 && y % 2 == 0)
+                    start.Add(new Vector2Int(x, y));
+            }
 
-        while (true)
+        for (int n = 0; n < start.Count; n++)
         {
             List<Vector2Int> stack = new List<Vector2Int>();
-
-
-
-            break;
         }
 
         randomState = Random.state;
