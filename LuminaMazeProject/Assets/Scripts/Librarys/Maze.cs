@@ -4,60 +4,46 @@ using UnityEngine;
 
 public class Maze
 {
+    private IntSquare roomData;
     private Random.State randomState;
-    private Vector2Int size;
-    private List<int> map;
 
+    #region Maze
     public Maze(int x, int y)
     {
-        if (x < 1) x = 1;
-        if (y < 1) y = 1;
+        roomData = new IntSquare(x, y);
 
-        size.x = x;
-        size.y = y;
-        map = new List<int>(new int[size.x * size.y]);
         randomState = Random.state;
     }
 
+    public Maze()
+    {
+        new Maze(1, 1);
+    }
+    #endregion Maze
+
     public void MakeMaze(int seed)
     {
-        Vector2Int s = new Vector2Int(size.x * 2 + 1, size.y * 2 + 1);
+        IntSquare map = new IntSquare(roomData.size.x * 2 + 1, roomData.size.y * 2 + 1);
         List<Vector2Int> start = new List<Vector2Int>();
-        List<int> w = new List<int>(new int[s.x * s.y]);
         Random.InitState(seed);
 
-        for (int y = 0; y < s.y; y++)
-            for (int x = 0; x < s.x; x++)
+        for (int y = 0; y < map.size.y; y++)
+            for (int x = 0; x < map.size.x; x++)
             {
-                if (x == 0 || x == s.x - 1 || y == 0 || y == s.y - 1)
-                    w[y * s.x + x] = 1;
+                if (x == 0 || x == map.size.x - 1 || y == 0 || y == map.size.y - 1)
+                    map.SetCell(x, y, 1);
                 else if (x % 2 == 0 && y % 2 == 0)
                     start.Add(new Vector2Int(x, y));
             }
 
         for (int n = 0; n < start.Count; n++)
         {
-            List<Vector2Int> stack = new List<Vector2Int>();
+            Vector2Int pos = start[Random.Range(0,start.Count)];
+            
         }
+
+        map.Debug_OutputCell();
 
         randomState = Random.state;
-        DebugRoom(w);
-    }
-
-
-    private void DebugRoom(List<int> w)
-    {
-        int x = size.x * 2 + 1;
-        int y = size.y * 2 + 1;
-        string s = "";
-        for (int m = 0; m < y; m++)
-        {
-            for (int n = 0; n < y; n++)
-            {
-                s += w[m * x + n].ToString() + " ";
-            }
-            s += "\n";
-        }
-        Debug.Log(s);
     }
 }
