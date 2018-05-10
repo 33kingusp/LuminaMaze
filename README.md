@@ -1,2 +1,2 @@
-# LuminaMaze
-ルミナ
+﻿# LuminaMaze
+ゲーム"ルミナと迷宮の秘宝"のリポジトリです。
