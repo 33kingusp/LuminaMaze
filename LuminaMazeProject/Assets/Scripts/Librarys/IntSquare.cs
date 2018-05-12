@@ -68,12 +68,12 @@ public class IntSquare
     #region Debug
     public void Debug_OutputCell()
     {
-        string s = "";
+        string s = "Debug_OutputCell\n";
         for (int y = 0; y < size.y; y++)
         {
             for (int x = 0; x < size.x; x++)
                 s += GetCell(x, y).ToString();
-            s += "/n";
+            s += "\n";
         }
         Debug.Log(s);
     }
