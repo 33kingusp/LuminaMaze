@@ -54,17 +54,6 @@ public class IntSquare
     }
     #endregion GetCell
 
-    #region SetCellLine
-    public void SetCellLine(int sx, int sy, int ex, int ey)
-    {
-        //*****
-        //*****
-        //*****
-        //*****
-        //*****
-    }
-    #endregion SetCellLine
-
     #region Debug
     public void Debug_OutputCell()
     {
@@ -73,6 +62,19 @@ public class IntSquare
         {
             for (int x = 0; x < size.x; x++)
                 s += GetCell(x, y).ToString();
+            s += "\n";
+        }
+        Debug.Log(s);
+    }
+
+    public void Debug_OutputMap()
+    {
+        string s = "Debug_OutputMap\n";
+        for (int y = 0; y < size.y; y++)
+        {
+            for (int x = 0; x < size.x; x++)
+                if (GetCell(x, y) == 0) s += "□";
+                else s += "■";
             s += "\n";
         }
         Debug.Log(s);
