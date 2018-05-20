@@ -8,11 +8,22 @@ public class MazeManager : MonoBehaviour
 
     private void Start()
     {
-        Maze m = new Maze(5, 5);
-        m.MakeMaze(0);
+        Maze m = new Maze(0, 5, 5);
+        m.mazeData.Debug_OutputMap();
+        InstantiateMap(m);
     }
 
-    public void InstantiateMap()
+    public void InstantiateMap(Maze maze)
     {
+        IntSquare mazeData = maze.mazeData;
+        for (int y = 1; y < mazeData.size.y; y += 2)
+        {
+            for (int x = 1; x < mazeData.size.x; x += 2)
+            {
+                GameObject room = Instantiate(roomPrefab, Vector3.zero, Quaternion.identity);
+                room.GetComponent<Room>().OpenDoor(maze.GetRoomNumber(x, y));
+                room.transform.position = new Vector3(x * 5, 0, -y * 5);
+            }
+        }
     }
 }

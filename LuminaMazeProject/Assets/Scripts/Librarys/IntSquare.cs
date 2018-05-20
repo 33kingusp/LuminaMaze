@@ -31,7 +31,7 @@ public class IntSquare
     #region GetCell
     public int GetCell(int x, int y)
     {
-        if (x >= size.x || y >= size.y) return 0;
+        if (x < 0 || y < 0 || x >= size.x || y >= size.y) return -1;
         return (cell[y * size.x + x]);
     }
 
@@ -44,7 +44,7 @@ public class IntSquare
     #region SetCell
     public void SetCell(int x, int y, int n)
     {
-        if (x >= size.x || y >= size.y) return;
+        if (x < 0 || y < 0 || x >= size.x || y >= size.y) return;
         cell[y * size.x + x] = n;
     }
 
