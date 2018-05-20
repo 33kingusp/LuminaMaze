@@ -18,16 +18,6 @@ public class Maze
         mazeData = new IntSquare(x * 2 + 1, y * 2 + 1);
         CreateMaze(seed);
     }
-
-    public Maze(int x, int y)
-    {
-        new Maze(0, x, y);
-    }
-
-    public Maze()
-    {
-        new Maze(1, 1);
-    }
     #endregion Maze
 
     #region Create
@@ -75,8 +65,6 @@ public class Maze
         if (mazeData.GetCell(pos.x - 1, pos.y) == 0 && !isCurrentWall(pos.x - 2, pos.y))
             dirList.Add(3);
 
-
-
         if (dirList.Count > 0)
         {
             SetWall(pos);
@@ -90,17 +78,17 @@ public class Maze
                     SetWall(pos.x, pos.y--);
                     break;
                 case 1:
-                    isPath = (mazeData.GetCell(pos.x, pos.y - 2) == 0);
+                    isPath = (mazeData.GetCell(pos.x + 2, pos.y) == 0);
                     SetWall(pos.x++, pos.y);
                     SetWall(pos.x++, pos.y);
                     break;
                 case 2:
-                    isPath = (mazeData.GetCell(pos.x, pos.y - 2) == 0);
+                    isPath = (mazeData.GetCell(pos.x, pos.y + 2) == 0);
                     SetWall(pos.x, pos.y++);
                     SetWall(pos.x, pos.y++);
                     break;
                 case 3:
-                    isPath = (mazeData.GetCell(pos.x, pos.y - 2) == 0);
+                    isPath = (mazeData.GetCell(pos.x - 2, pos.y) == 0);
                     SetWall(pos.x--, pos.y);
                     SetWall(pos.x--, pos.y);
                     break;
@@ -133,8 +121,7 @@ public class Maze
     #region isCurrentWall
     private bool isCurrentWall(Vector2Int pos)
     {
-        bool isC = currentWallList.Contains(pos);
-        return isC;
+        return (currentWallList.Contains(pos));
     }
 
     private bool isCurrentWall(int x, int y)

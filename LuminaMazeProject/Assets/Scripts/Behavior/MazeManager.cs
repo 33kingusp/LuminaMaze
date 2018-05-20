@@ -8,7 +8,7 @@ public class MazeManager : MonoBehaviour
 
     private void Start()
     {
-        Maze m = new Maze(0, 5, 5);
+        Maze m = new Maze(999 ,5, 5);
         m.mazeData.Debug_OutputMap();
         InstantiateMap(m);
     }
