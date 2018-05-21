@@ -8,7 +8,7 @@ public class MazeManager : MonoBehaviour
 
     private void Start()
     {
-        Maze m = new Maze(999 ,5, 5);
+        Maze m = new Maze(999, 5, 5);
         m.mazeData.Debug_OutputMap();
         InstantiateMap(m);
     }
@@ -20,7 +20,7 @@ public class MazeManager : MonoBehaviour
         {
             for (int x = 1; x < mazeData.size.x; x += 2)
             {
-                GameObject room = Instantiate(roomPrefab, Vector3.zero, Quaternion.identity);
+                GameObject room = Instantiate(roomPrefab, Vector3.zero, Quaternion.identity, transform);
                 room.GetComponent<Room>().OpenDoor(maze.GetRoomNumber(x, y));
                 room.transform.position = new Vector3(x * 5, 0, -y * 5);
             }
